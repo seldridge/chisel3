@@ -4,7 +4,7 @@ package chisel3
 
 import firrtl.{AnnotationSeq, FirrtlCircuitAnnotation, RunFirrtlTransformAnnotation}
 import firrtl.annotations.{NoTargetAnnotation, SingleTargetAnnotation, CircuitName}
-import firrtl.options.HasScoptOptions
+import firrtl.options.{HasScoptOptions, RegisteredLibrary}
 import chisel3.experimental.{RawModule, RunFirrtlTransform}
 import chisel3.internal.firrtl.{Converter, Circuit}
 import scopt.OptionParser
@@ -79,4 +79,14 @@ object ChiselCircuitAnnotation {
   def apply(dut: () => RawModule): ChiselCircuitAnnotation = ChiselCircuitAnnotation(Driver.elaborate(dut))
 
   private [chisel3] def apply(): ChiselCircuitAnnotation = ChiselCircuitAnnotation(Circuit("null", Seq.empty))
+}
+
+class ChiselOptionsAsLibrary extends RegisteredLibrary {
+  val name: String = "Other Chisel Options"
+  def addOptions(p: OptionParser[AnnotationSeq]): Unit =
+    Seq( NoRunFirrtlAnnotation,
+         DontSaveChirrtlAnnotation,
+         DontSaveAnnotationsAnnotation,
+         ChiselCircuitAnnotation() )
+      .map(_.addOptions(p))
 }

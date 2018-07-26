@@ -112,7 +112,6 @@ class DriverSpec extends FreeSpec with Matchers {
     "deprecated execute method still works" in {
       implicit val targetDir = "test_run_dir"
       val optionsManager = new ExecutionOptionsManager ("test") with HasFirrtlExecutionOptions
-          with HasChiselExecutionOptions
       val args = Array( "-tn", name,
                         "-td", targetDir )
       Driver.execute(args, () => new DummyModule) match {

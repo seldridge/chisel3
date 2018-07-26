@@ -61,14 +61,3 @@ object ChiselViewer {
     }
   }
 }
-
-trait HasChiselExecutionOptions { this: ExecutionOptionsManager =>
-  parser.note("Chisel Options")
-
-  // [todo] This could be handled with reflection via knownDirectSubclasses
-  Seq( NoRunFirrtlAnnotation,
-       DontSaveChirrtlAnnotation,
-       DontSaveAnnotationsAnnotation,
-       ChiselCircuitAnnotation() )
-    .map(_.addOptions(parser))
-}

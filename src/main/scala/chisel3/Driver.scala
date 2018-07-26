@@ -77,8 +77,7 @@ case class ChiselExecutionFailure(message: String) extends ChiselExecutionResult
   * }}}
   */
 object Driver extends firrtl.options.Driver with BackendCompilationUtilities {
-  val optionsManager = new ExecutionOptionsManager("chisel3") with HasChiselExecutionOptions
-      with HasFirrtlExecutionOptions
+  val optionsManager = new ExecutionOptionsManager("chisel3") with HasFirrtlExecutionOptions
 
   /**
     * Elaborates the Module specified in the gen function into a Circuit
