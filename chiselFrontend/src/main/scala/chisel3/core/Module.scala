@@ -15,6 +15,15 @@ import chisel3.internal.sourceinfo.{InstTransform, SourceInfo}
 
 import _root_.firrtl.annotations.{CircuitName, ModuleName}
 
+/** Module wrapper
+  *
+  * @groupname DucksOnly
+  * @groupdesc DucksOnly These are magical things that only ducks
+  * understand. Just pretend that these aren't a part of the public API.
+  * Seriously, just ignore these. Go look at other stuff... Quack quack.
+  * <3
+  * @groupprio DucksOnly 1001
+  */
 object Module {
   /** A wrapper method that all Module instantiations must be wrapped in
     * (necessary to help Chisel track internal state).
@@ -25,6 +34,11 @@ object Module {
     */
   def apply[T <: BaseModule](bc: => T): T = macro InstTransform.apply[T]
 
+  /** Quack quack quack
+    *
+    * @param bc I have no idea what this is... where's @ducky64?
+    * @group DucksOnly
+    */
   def do_apply[T <: BaseModule](bc: => T)
                                (implicit sourceInfo: SourceInfo,
                                          compileOptions: CompileOptions): T = {

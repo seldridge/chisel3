@@ -140,6 +140,7 @@ lazy val chisel = (project in file(".")).
     scalacOptions in Test ++= Seq("-language:reflectiveCalls"),
     scalacOptions in Compile in doc ++= Seq(
       "-diagrams",
+      "-groups",
       "-diagrams-max-classes", "25",
       "-doc-version", version.value,
       "-doc-title", name.value,
